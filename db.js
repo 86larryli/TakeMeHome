@@ -43,8 +43,6 @@ mongoose.model('WatchList', WatchList);
 if (config.MODE === "DEV") {
 	mongoose.connect("mongodb://localhost:27017/takemehome-dev");
 } else {
-	console.log("config.DATABASE_URL", config.DATABASE_URL);
-
 	mongoose.connect(config.DATABASE_URL, {
 		ssl: true,
 		sslValidate: true,
