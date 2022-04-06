@@ -53,6 +53,7 @@ function importFromFile(filePath, mode) {
                         console.log("[ERROR]: Save record error", err);
                         return;
                     }
+                    console.log(`[INFO] Saved schedule id: ${saveResult._id}`);
                 });
             }
         }
