@@ -48,17 +48,13 @@ function importFromFile(filePath, mode) {
                     technicalstop: flightSchedule.importer.indexOf("技术经停") !== -1
                 });
 
-                // schedule.save(function (err, saveResult) {
-                //     if (err) {
-                //         console.log("[ERROR]: Save record error", err);
-                //         return;
-                //     }
-                // });
-
-                break;
+                schedule.save(function (err, saveResult) {
+                    if (err) {
+                        console.log("[ERROR]: Save record error", err);
+                        return;
+                    }
+                });
             }
-
-            break;
         }
     });
 }
