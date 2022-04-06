@@ -1,53 +1,28 @@
-const mongoose = require('mongoose'),
-	URLSlugs = require('mongoose-url-slugs'),
-	passportLocalMongoose = require('passport-local-mongoose');
+const path = require('path');
+const config = require('./config');
+
+const mongoose = require('mongoose');
+// const URLSlugs = require('mongoose-url-slugs'),
+// const passportLocalMongoose = require('passport-local-mongoose');
 
 
-const User = new mongoose.Schema({
-	// username, password
-});
-
-const Country = new mongoose.Schema({
-	countryname: { type: String, required: true }
-}, {
-	_id: true
-});
-
-const City = new mongoose.Schema({
-	countryid: { type: String, required: true },
-	cityname: { type: String, required: true }
-}, {
-	_id: true
-});
-
-const Airport = new mongoose.Schema({
-	cityid: { type: String, required: true },
-	airportcode: { type: String, required: true }
-}, {
-	_id: true
-});
-
-const Airline = new mongoose.Schema({
-	countryid: { type: String, required: true },
-	airlinename: { type: String, required: true }
-}, {
-	_id: true
-});
+// const User = new mongoose.Schema({
+// 	// username, password
+// });
 
 const Schedule = new mongoose.Schema({
-	airlineid: { type: String, required: true },
+	airline: { type: String, required: true },
 	flightno: { type: String, required: true },
 	flightdate: { type: Date, required: true },
 	flightschedule: { type: String, required: true },
 	flightplan: { type: String, required: true },
-	depcityid: { type: String, required: true },
-	arrcityid: { type: String, required: true },
-	stopno: { type: Number, required: true },
-	stops: { type: Object, required: true }
+	depcity: { type: String, required: true },
+	arrcity: { type: String, required: true },
+	stops: { type: Object, required: true },
+	technicalstop: { type: Number, required: true }
 }, {
 	_id: true
 });
-
 
 const WatchList = new mongoose.Schema({
 	userid: { type: String, required: true },
@@ -59,15 +34,17 @@ const WatchList = new mongoose.Schema({
 	_id: true
 });
 
+// User.plugin(passportLocalMongoose);
 
-User.plugin(passportLocalMongoose);
-
-mongoose.model('User', User);
-mongoose.model('Country', Country);
-mongoose.model('City', City);
-mongoose.model('Airport', Airport);
-mongoose.model('Airline', Airline);
+// mongoose.model('User', User);
 mongoose.model('Schedule', Schedule);
 mongoose.model('WatchList', WatchList);
 
-mongoose.connect('mongodb://localhost/takemehome-dev');
+console.log("config.DATABASE_URL", config.DATABASE_URL);
+
+mongoose.connect(config.DATABASE_URL, {
+	ssl: true,
+	sslValidate: true,
+	sslCA: config.DATABASE_CA_PATH,
+	retryWrites: false,
+});
