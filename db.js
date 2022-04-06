@@ -47,10 +47,12 @@ mongoose.connect(config.DATABASE_URL, {
 	sslValidate: true,
 	sslCA: config.DATABASE_CA_PATH,
 	retryWrites: false,
-}).on('error', err => {
-	console.log("[ERROR] Failed to connect database", err);
-}).on('connecting', () => {
-	console.log("[INFO] Connecting to database...")
-}).on('connected', () => {
+}).catch(error => {
+	console.log("[ERROR] Failed to connect database", error);
+});
+mongoose.connection.on('connecting', () => {
+	console.log("[INFO] Connecting to database...");
+});
+mongoose.connection.on('connected', () => {
 	console.log("[INFO] Connected to database!")
 });
