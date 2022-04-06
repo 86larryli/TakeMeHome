@@ -1,6 +1,6 @@
 module.exports = {
     "plugins": [
-        "mocha", 
+        "mocha",
     ],
     "env": {
         "browser": true,
@@ -33,7 +33,7 @@ module.exports = {
         "no-useless-call": ["error"],
         "no-use-before-define": ["error"],
 
-        "camelcase": ["error", {properties: "never"}],
+        "camelcase": ["error", { properties: "never" }],
         "func-call-spacing": ["error"],
         "no-lonely-if": ["error"],
         "array-bracket-spacing": ["error"],
