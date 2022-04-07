@@ -7,8 +7,7 @@ const express = require('express');
 const path = require('path');
 
 const index = require('./routes/index');
-// const list = require('./routes/list');
-// const listItem = require('./routes/list-item');
+const flights = require('./routes/flights');
 
 const app = express();
 
@@ -38,7 +37,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/', index);
-// app.use('/list', list);
-// app.use('/list-item', listItem);
+app.use('/flights', flights);
 
 app.listen(3000);
