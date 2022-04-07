@@ -35,7 +35,7 @@ router.get('/getFlightSchedules', (req, res) => {
                 console.log("[ERROR] Error occurred when finding Schedule\n", err);
                 res.status(500).send("500 Internal Server Error");
             } else {
-                res.send(findResult);
+                res.json(findResult);
             }
         });
 });
