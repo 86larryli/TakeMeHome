@@ -10,7 +10,7 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  res.render('home');
+  res.render('index');
 });
 
 router.get('/login', (req, res) => {
