@@ -32,7 +32,7 @@ router.get('/getFlightSchedules', (req, res) => {
         .limit(pageSize || 10)
         .exec((err, findResult) => {
             if (err) {
-                console.log("[ERROR] Error occurred when finding Schedule");
+                console.log("[ERROR] Error occurred when finding Schedule", err);
                 res.status(500).send("500 Internal Server Error");
             } else {
                 res.send(findResult);
