@@ -1,27 +1,18 @@
 const path = require('path');
-const config = require('./config');
+const config = require('../config');
 
 const mongoose = require('mongoose');
-// const URLSlugs = require('mongoose-url-slugs'),
-// const passportLocalMongoose = require('passport-local-mongoose');
-
-
-// const User = new mongoose.Schema({
-// 	// username, password
-// });
 
 const Schedule = new mongoose.Schema({
 	airline: { type: String, required: true },
 	flightno: { type: String, required: true },
-	flightdate: { type: Date, required: true },
-	flightschedule: { type: String, required: true },
+	flightdate: { type: String, required: true },
+	flightday: { type: String, required: true },
 	flightplan: { type: String, required: true },
 	depcity: { type: String, required: true },
 	arrcity: { type: String, required: true },
 	stops: { type: Object, required: true },
 	technicalstop: { type: Number, required: true }
-}, {
-	_id: true
 });
 
 const WatchList = new mongoose.Schema({
@@ -30,13 +21,8 @@ const WatchList = new mongoose.Schema({
 	startdate: { type: Date, required: true },
 	enddate: { type: Date, required: true },
 	watchtype: { type: Number, required: true }
-}, {
-	_id: true
 });
 
-// User.plugin(passportLocalMongoose);
-
-// mongoose.model('User', User);
 mongoose.model('Schedule', Schedule);
 mongoose.model('WatchList', WatchList);
 
