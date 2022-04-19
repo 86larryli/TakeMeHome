@@ -4,7 +4,7 @@ const Schedule = mongoose.model('Schedule');
 const express = require('express');
 const router = express.Router();
 
-router.get('/getFlightSchedules', (req, res) => {
+router.get('/getFlightSchedules', async (req, res) => {
     const sortField = req.query.sortField;
     const sortOrder = req.query.sortOrder === "ascend" ? 1 : -1;
     let filters = req.query.filters;
@@ -25,6 +25,11 @@ router.get('/getFlightSchedules', (req, res) => {
         }
     }
 
+    const totalCount = await Schedule.countDocuments(findFilter);
+    let distinctDepCity = await Schedule.find().distinct('depcity');
+    let distinctArrCity = await Schedule.find().distinct('arrcity');
+    let distinctAirline = await Schedule.find().distinct('airline');
+
     Schedule
         .find(findFilter)
         .sort(sortBy)
@@ -35,7 +40,34 @@ router.get('/getFlightSchedules', (req, res) => {
                 console.log("[ERROR] Error occurred when finding Schedule\n", err);
                 res.status(500).send("500 Internal Server Error");
             } else {
-                res.json(findResult);
+                distinctDepCity = distinctDepCity.map(ele => {
+                    return {
+                        text: ele,
+                        value: ele
+                    }
+                });
+
+                distinctArrCity = distinctArrCity.map(ele => {
+                    return {
+                        text: ele,
+                        value: ele
+                    }
+                });
+
+                distinctAirline = distinctAirline.map(ele => {
+                    return {
+                        text: ele,
+                        value: ele
+                    }
+                });
+
+                res.json({
+                    totalCount, rows: findResult, columnFilters: {
+                        depcity: distinctDepCity,
+                        arrcity: distinctArrCity,
+                        airline: distinctAirline
+                    }
+                });
             }
         });
 });
