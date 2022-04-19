@@ -15,6 +15,8 @@ router.get('/getFlightSchedules', async (req, res) => {
 
     if (sortField) {
         sortBy[sortField] = sortOrder;
+    } else {
+        sortBy["flightdate"] = 1;
     }
 
     if (filters) {
