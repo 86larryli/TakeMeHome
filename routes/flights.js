@@ -198,6 +198,30 @@ const testingRequirementMap = {
             },
         }
     },
+    "AA127": {
+        "Inactivated": {
+            "Self-Monitoring": {
+                dayOffSet: [-7, -1]
+            },
+            "PCR 1": {
+                dayOffSet: [-7],
+                time: "Any Time"
+            },
+            "PCR 2": {
+                dayOffSet: [-2, -1],
+                time: "Any Time"
+            },
+            "PCR 3": {
+                dayOffSet: [-1],
+                time: "Any Time",
+                note: "Must be taken at a different agency from the second one."
+            },
+            "Antigen 1": {
+                dayOffSet: [-1],
+                time: "After 14:00 pm"
+            },
+        }
+    },
 };
 
 router.get('/getFlightDetail', async (req, res) => {
