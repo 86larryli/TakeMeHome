@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-template#readme",
   "dependencies": {
+    "@alicloud/pop-core": "^1.7.10",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "date-and-time": "^2.3.1",
