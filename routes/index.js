@@ -10,12 +10,12 @@ router.get('/', (req, res) => {
 
 router.post('/register', (req, res) => {
     const { username, password, prefix, phone } = req.body;
-    User.register(new User({ username }), password, (err, user) => {
+    User.register(new User({ username, prefix, phone }), password, (err, user) => {
         if (err) {
-            res.render('register', { error: 1, message: 'Your registration information is not valid' });
+            res.json({ error: 1, message: 'Your registration information is not valid' });
         } else {
             passport.authenticate('local')(req, res, function () {
-                res.json({ code: 200 });
+                res.json({ success: 1 });
             });
         }
     });
