@@ -25,7 +25,7 @@ router.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user) => {
         if (user) {
             req.logIn(user, (err) => {
-                res.cookie('username', req.user.username);
+                res.cookie('username', req.user.username,);
                 res.json({ success: 1, username: req.user.username });
             });
         } else {

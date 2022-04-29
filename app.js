@@ -52,4 +52,4 @@ app.use('/', index);
 app.use('/flights', flights);
 app.use('/watchlist', watchlist);
 
-app.listen(3000);
+app.listen(80);
