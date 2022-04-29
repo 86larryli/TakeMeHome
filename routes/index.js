@@ -25,7 +25,8 @@ router.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user) => {
         if (user) {
             req.logIn(user, (err) => {
-                res.json({ code: 200, username: req.body.username });
+                res.cookie('username', req.user.username);
+                res.json({ success: 1, username: req.user.username });
             });
         } else {
             res.json({ error: 1, message: 'Your login or password is incorrect' });

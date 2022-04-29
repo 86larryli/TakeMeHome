@@ -5,7 +5,9 @@ const passportLocalMongoose = require('passport-local-mongoose');
 
 const User = new mongoose.Schema({
     // username, password
-    watchlists: [{ type: mongoose.Schema.Types.ObjectId, ref: 'WatchList' }]
+    watchlists: [{ type: mongoose.Schema.Types.ObjectId, ref: 'WatchList' }],
+    phoneprefix: { type: String, required: false },
+    phone: { type: String, required: false }
 });
 
 const Schedule = new mongoose.Schema({
@@ -23,9 +25,8 @@ const Schedule = new mongoose.Schema({
 const WatchList = new mongoose.Schema({
     userid: { type: String, required: true },
     flightno: { type: String, required: true },
-    startdate: { type: Date, required: true },
-    enddate: { type: Date, required: true },
-    watchtype: { type: Number, required: true }
+    flightdate: { type: String, required: true },
+    watchtype: { type: Number, required: false }
 });
 
 User.plugin(passportLocalMongoose);
