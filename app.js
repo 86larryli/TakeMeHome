@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', index);
-app.use('/flights', flights);
-app.use('/watchlist', watchlist);
+app.use('/api/flights', flights);
+app.use('/api/watchlist', watchlist);
 
-app.listen(80);
+app.listen(3000);

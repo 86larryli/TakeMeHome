@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     res.render('index');
 })
 
-router.post('/register', (req, res) => {
+router.post('/api/register', (req, res) => {
     const { username, password, prefix, phone } = req.body;
     User.register(new User({ username, prefix, phone }), password, (err, user) => {
         if (err) {
@@ -21,7 +21,7 @@ router.post('/register', (req, res) => {
     });
 });
 
-router.post('/login', (req, res, next) => {
+router.post('/api/login', (req, res, next) => {
     passport.authenticate('local', (err, user) => {
         if (user) {
             req.logIn(user, (err) => {
