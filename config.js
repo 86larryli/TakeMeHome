@@ -1,4 +1,4 @@
-const MODE = "DEV";
+const MODE = "PROD";
 
 const DATABASE_USERNAME = process.env.DATABASE_USERNAME;
 const DATABASE_PASSWORD = process.env.DATABASE_PASSWORD;
